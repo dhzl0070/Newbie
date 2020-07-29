@@ -42,11 +42,18 @@ public class MYPAGE {
 		frame.setBounds(100, 100, 400, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		String url2 = getClass().getResource("").getPath(); //경로가지고 오기! 하지만 뒤에 images폴더랑 파일명 확장자까지 필수!
+		Image image2 = new ImageIcon(url2 + "images/light.jpg").getImage();
+		frame.getContentPane().setLayout(null);
+		JLabel lblNewLabel_1 = new JLabel(new ImageIcon(image2.getScaledInstance(65, 74, image2.SCALE_SMOOTH)));
+		lblNewLabel_1.setBounds(242, 365, 82, 91);
+		frame.getContentPane().add(lblNewLabel_1);
 		
-		String url = getClass().getResource("").getPath();
-		Image image = new ImageIcon("C:\\Users\\SMT002\\Desktop\\Java_Study\\프로젝트\\[뉴비_알뜰트로닉] MYPAGE.jpg").getImage();
+		String url = getClass().getResource("").getPath(); //경로가지고 오기! 하지만 뒤에 images폴더랑 파일명 확장자까지 필수!
+		Image image = new ImageIcon(url + "images/mypage.jpg").getImage();
+		frame.getContentPane().setLayout(null);
 		JLabel lblNewLabel = new JLabel(new ImageIcon(image.getScaledInstance(390, 600, image.SCALE_SMOOTH)));
-		lblNewLabel.setBounds(0, 0, 390, 600);
+		lblNewLabel.setBounds(0, 0, 384, 561);
 		frame.getContentPane().add(lblNewLabel);
 		
 		

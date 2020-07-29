@@ -12,6 +12,8 @@ import java.awt.Color;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class 회원가입 {
 
@@ -94,10 +96,12 @@ public class 회원가입 {
 		txt_phone.setBounds(153, 369, 155, 34);
 		frame.getContentPane().add(txt_phone);
 		
-		JButton btn_join = new JButton("");
-		btn_join.setBounds(135, 451, 108, 34);
-		frame.getContentPane().add(btn_join);
-		
+		String url2 = getClass().getResource("").getPath(); // 경로가지고 오기! 하지만 뒤에 images폴더랑 파일명 확장자까지 필수!
+		Image image2 = new ImageIcon(url2 + "images/light.jpg").getImage();
+		frame.getContentPane().setLayout(null);
+		JLabel lbl_join = new JLabel(new ImageIcon(image2.getScaledInstance(65, 74, image2.SCALE_SMOOTH)));
+		lbl_join.setBounds(242, 414, 82, 91);
+		frame.getContentPane().add(lbl_join);
 		
 		String url = getClass().getResource("").getPath(); //경로가지고 오기! 하지만 뒤에 images폴더랑 파일명 확장자까지 필수!
 		Image image = new ImageIcon(url + "images/join.jpg").getImage();
@@ -105,5 +109,7 @@ public class 회원가입 {
 		JLabel lblNewLabel = new JLabel(new ImageIcon(image.getScaledInstance(390, 600, image.SCALE_SMOOTH)));
 		lblNewLabel.setBounds(0, 0, 384, 561);
 		frame.getContentPane().add(lblNewLabel);
+
+
 	}
 }
