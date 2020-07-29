@@ -1,5 +1,6 @@
 package 회원정보;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -21,7 +22,6 @@ public class DAO {
 		// 1. 동적로딩
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			//자르파일 참조하기 - 오라클6
 			conn = DriverManager.getConnection(url, user, password);
 
 		} catch (ClassNotFoundException e) {
@@ -45,19 +45,19 @@ public class DAO {
 		}
 	}
 
-	public String login(String id, String pw) {
-		String result = "";
+	public VO login(VO vo) {
+		VO result = null;
 		try {
 			getConnection();
 			String sql = "select name, age from members where id=? and pw=?";
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, id);
-			psmt.setString(2, pw);
+			psmt.setString(1, vo.getId());
+			psmt.setString(2, vo.getPw());
 			rs = psmt.executeQuery();
 			while (rs.next()) {// 같은 이름을 출력해주려고 while
 				String name = rs.getString(1);
 				int age = rs.getInt(2);
-				result = "이름은 : " + name + " 나이는 : " + age + " 입니다.";
+				result = new VO(name, age);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -68,16 +68,16 @@ public class DAO {
 	}
 
 	// 회원가입 메소드
-	public int insert(String id, String pw, String name, int age) {
+	public int insert(VO vo) {
 		int cnt = 0;
 		try {
 			getConnection();
 			String sql = "insert into members values(?,?,?,?)";// ?빈공간을 만들어줌
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, id);// 1부터 시작
-			psmt.setString(2, pw);
-			psmt.setString(3, name);
-			psmt.setInt(4, age);
+			psmt.setString(1, vo.getId());// 1부터 시작
+			psmt.setString(2, vo.getPw());
+			psmt.setString(3, vo.getName());
+			psmt.setInt(4, vo.getAge());
 			cnt = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -107,14 +107,14 @@ public class DAO {
 	}
 
 	// 회원 탈퇴
-	public int Delete(String id, String pw) {
+	public int Delete(VO vo) {
 		int cnt = 0;
 		try {
 			getConnection();
 			String sql = "delete from members where id = ? and pw = ?";
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, id);
-			psmt.setString(2, pw);
+			psmt.setString(1, vo.getId());
+			psmt.setString(2, vo.getPw());
 			cnt = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -123,7 +123,7 @@ public class DAO {
 		}
 		return cnt;
 	}
-
+	//회원정보확인
 	public ArrayList<VO> allSelect() {
 		ArrayList<VO> list = new ArrayList<VO>();
 		try {
