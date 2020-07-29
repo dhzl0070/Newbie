@@ -39,7 +39,7 @@ public class 비교분석 {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 768, 630);
+		frame.setBounds(100, 100, 786, 637);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		String url = getClass().getResource("").getPath(); //경로가지고 오기! 하지만 뒤에 images폴더랑 파일명 확장자까지 필수!
