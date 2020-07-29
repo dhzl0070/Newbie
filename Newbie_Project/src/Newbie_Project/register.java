@@ -1,5 +1,5 @@
 package Newbie_Project;
 
-public class ¤¤¤±¤·¤© {
+public class register {
 
 }
