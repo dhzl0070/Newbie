@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import model.ProductsVO;
 import model.mypVO;
+import model.userVO;
 
 public class mypDAO {
 	private Connection conn = null;
@@ -19,7 +20,6 @@ public class mypDAO {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
 		String password = "hr";
-
 		// 동적로딩
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -46,18 +46,19 @@ public class mypDAO {
 			e.printStackTrace();
 		}
 	}
-	
-	//myproducts에 등록
-	public int myproducts(ProductsVO vo) {
+
+	// myproducts에 등록
+	public int myproducts(ProductsVO pvo, userVO vo) {
 		int cnt = 0;
 		try {
 			getConnection();
-			String sql = "insert into myproducts(num,model_id) values(mypdct_seq.nextval,?)";// ?빈공간을 만들어줌
+			String sql = "insert into myproducts(num,model_id,vip_id) values(mypdct_seq.nextval,?,?)";// ?빈공간을 만들어줌
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, vo.getNum());
-			psmt.setString(2, vo.getModel_id());
-			
-//			psmt.setString(4, vo.getVip_id());
+			/* psmt.setInt(1, vo.getNum()); */
+			psmt.setString(1, pvo.getModel_id());
+			//System.out.println("123" + pvo.getModel_id());
+			psmt.setNString(2, vo.getVip_id());
+			//System.out.println("456" + vo.getVip_id());
 			cnt = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -66,42 +67,34 @@ public class mypDAO {
 		}
 		return cnt;
 	}
-	//등록된 목록 불러오기
-		public ArrayList<mypVO> allSelect_CE() {
-			ArrayList<mypVO> list = new ArrayList<mypVO>();
-			try {
-				getConnection();
-				String sql = "Select * from products";
-				psmt = conn.prepareStatement(sql);
-				rs = psmt.executeQuery();
-				
-				int num1 = 1;
-				
-				while (rs.next()) {
-					int num = rs.getInt(1);
-					String model_id = rs.getString(2);
-					String category = rs.getString(3);
-					String vip_id = rs.getString(4);
-					int sort = rs.getInt(5);
-					int wh = rs.getInt(6);
-					
-					mypVO CEV = new mypVO(num, model_id, category, vip_id, sort, wh);
-					list.add(CEV);
-					
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				close();
+
+	// 등록된 목록 불러오기
+	public ArrayList<mypVO> allSelect_CE() {
+		ArrayList<mypVO> list = new ArrayList<mypVO>();
+		try {
+			getConnection();
+			String sql = "Select * from products";
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+
+			int num1 = 1;
+
+			while (rs.next()) {
+				int num = rs.getInt(1);
+				String model_id = rs.getString(2);
+				String category = rs.getString(3);
+				String vip_id = rs.getString(4);
+				int sort = rs.getInt(5);
+				int wh = rs.getInt(6);
+
+				mypVO CEV = new mypVO(num, model_id, category, vip_id, sort, wh);
+				list.add(CEV);
 			}
-			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
 		}
-		
+		return list;
 	}
-	
-	
-
-	
-	
-	
-
+}

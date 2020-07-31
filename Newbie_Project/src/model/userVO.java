@@ -27,7 +27,9 @@ public class userVO {
 	      this.vip_id = vip_id;
 	      this.vip_pw = vip_pw;
 	   }
-
+	   public userVO(String vip_id) {
+		   this.vip_id = vip_id;
+	   }
 
 
 

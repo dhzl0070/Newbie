@@ -2,29 +2,26 @@ package View;
 
 import java.awt.EventQueue;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import model.userVO;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-public class Home {
+public class Step2_1 {
 
    private JFrame frame;
 
    /**
     * Launch the application.
     */
-   public static void main(userVO vo) {
+   public static void main(String[] args) {
       EventQueue.invokeLater(new Runnable() {
          public void run() {
             try {
-               Home window = new Home(vo);
+               Step2_1 window = new Step2_1();
                window.frame.setVisible(true);
             } catch (Exception e) {
                e.printStackTrace();
@@ -36,67 +33,19 @@ public class Home {
    /**
     * Create the application.
     */
-   public Home(userVO vo) {
-      initialize(vo);
+   public Step2_1() {
+      initialize();
    }
 
    /**
     * Initialize the contents of the frame.
     */
-   private void initialize(userVO vo) {
+   private void initialize() {
       frame = new JFrame();
       frame.setBounds(100, 100, 768, 630);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.getContentPane().setLayout(null);
-      
-      JLabel lbl_Step1 = new JLabel("");
-      lbl_Step1.addMouseListener(new MouseAdapter() {
-         @Override
-         public void mouseClicked(MouseEvent e) {
-            
-            frame.dispose();
-            Step1.main(null);
-         }
-      });
-      lbl_Step1.setBounds(48, 473, 82, 96);
-      frame.getContentPane().add(lbl_Step1);
-      
-      JLabel lbl_Circulator = new JLabel("");
-      lbl_Circulator.addMouseListener(new MouseAdapter() {
-         @Override
-         public void mouseClicked(MouseEvent e) {
-            
-            frame.dispose();
-            Circulator.main(null);
-         }
-      });
-      lbl_Circulator.setBounds(168, 473, 82, 96);
-      frame.getContentPane().add(lbl_Circulator);
-      
-      JLabel lbl_Pattern = new JLabel("");
-      lbl_Pattern.addMouseListener(new MouseAdapter() {
-         @Override
-         public void mouseClicked(MouseEvent e) {
-            
-            frame.dispose();
-            Pattern.main(null);
-         }
-      });
-      lbl_Pattern.setBounds(501, 473, 82, 96);
-      frame.getContentPane().add(lbl_Pattern);
-      
-      JLabel lbl_Compare = new JLabel("");
-      lbl_Compare.addMouseListener(new MouseAdapter() {
-         @Override
-         public void mouseClicked(MouseEvent e) {
-            
-            frame.dispose();
-            Compare.main(null);
-         }
-      });
-      lbl_Compare.setBounds(621, 473, 82, 96);
-      frame.getContentPane().add(lbl_Compare);
-      
+
       JLabel lbl_HP = new JLabel("");
       lbl_HP.addMouseListener(new MouseAdapter() {
          @Override
@@ -121,24 +70,51 @@ public class Home {
       });
       lbl_Notice.setBounds(547, 25, 155, 43);
       frame.getContentPane().add(lbl_Notice);
-      
+
       JLabel lbl_Mypage = new JLabel("");
       lbl_Mypage.addMouseListener(new MouseAdapter() {
          @Override
          public void mouseClicked(MouseEvent e) {
-            
+
             frame.dispose();
             Mypage.main(null);
          }
       });
       lbl_Mypage.setBounds(176, 25, 122, 43);
       frame.getContentPane().add(lbl_Mypage);
+
+      JLabel lbl_Step1 = new JLabel("");
+      lbl_Step1.addMouseListener(new MouseAdapter() {
+         @Override
+         public void mouseClicked(MouseEvent e) {
+
+            frame.dispose();
+            Step1.main(null);
+         }
+      });
+      lbl_Step1.setBounds(48, 473, 82, 96);
+      frame.getContentPane().add(lbl_Step1);
+      JLabel lbl_rice_cooker = new JLabel("");
+      lbl_rice_cooker.addMouseListener(new MouseAdapter() {
+         @Override
+         public void mouseClicked(MouseEvent e) {
+            
+            frame.dispose();
+            Step3_1.main(null);
+         }
+      });
+      lbl_rice_cooker.setBounds(85, 155, 596, 304);
+      frame.getContentPane().add(lbl_rice_cooker);
       String url = getClass().getResource("").getPath();
-      System.out.println(url);
-      Image image = new ImageIcon(url+"images/Home.jpg").getImage();
+      Image image = new ImageIcon(url+"images/Step2_1.jpg").getImage();
       JLabel lblNewLabel = new JLabel(new ImageIcon(image.getScaledInstance(768, 580, Image.SCALE_SMOOTH)));
       lblNewLabel.setBounds(0, 0, 752, 600);
       frame.getContentPane().add(lblNewLabel);
       
+      JLabel lblNewLabel_1 = new JLabel("New label");
+      lblNewLabel_1.setBounds(35, 119, 683, 344);
+      frame.getContentPane().add(lblNewLabel_1);
+
    }
+
 }

@@ -117,7 +117,7 @@ public class Login {
 
             if (result != null) {
                frame.dispose();
-               Home.main(null);
+               Home.main(vo);
             }
             else {
                JOptionPane.showMessageDialog(null, "로그인실패 :(","로그인",JOptionPane.ERROR_MESSAGE);

@@ -23,8 +23,9 @@ public class mypVO {
 		this.category = category;
 		this.vip_id = vip_id;
 	}
-	public mypVO(String model_id) {
+	public mypVO(String model_id, String vip_id) {
 		this.model_id = model_id;
+		this.vip_id = vip_id;
 	}
 	
 	public int getNum() {

@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class 계산기 {
+public class Circulator {
 
 	private JFrame frame;
 
@@ -18,7 +18,7 @@ public class 계산기 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					계산기 window = new 계산기();
+					Circulator window = new Circulator();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,7 +30,7 @@ public class 계산기 {
 	/**
 	 * Create the application.
 	 */
-	public 계산기() {
+	public Circulator() {
 		initialize();
 	}
 

@@ -12,23 +12,10 @@ import javax.swing.JLabel;
 public class VIEW_GUI_LoginSuccess {
 
    private JFrame frame;
-
-   /**
-    * Launch the application.
-    */
-   
-
-   /**
-    * Create the application.
-    */
    public VIEW_GUI_LoginSuccess(userVO vo) {
       initialize(vo);
       frame.setVisible(true);
    }
-
-   /**
-    * Initialize the contents of the frame.
-    */
    private void initialize(userVO vo) {
       frame = new JFrame();
       frame.setBounds(100, 100, 450, 300);
