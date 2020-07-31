@@ -7,9 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.PR_VO;
+import model.ProductsVO;
+import model.mypVO;
 
-public class PR_DAO {
+public class mypDAO {
 	private Connection conn = null;
 	private PreparedStatement psmt = null;
 	private ResultSet rs = null;
@@ -46,20 +47,17 @@ public class PR_DAO {
 		}
 	}
 	
-	//제도 선택
-	public int PRDCT_RGSTR(PR_VO cev) {
+	//myproducts에 등록
+	public int myproducts(ProductsVO vo) {
 		int cnt = 0;
 		try {
 			getConnection();
-			String sql = "insert into PRDCT_RGSTR values(?)";// ?빈공간을 만들어줌
+			String sql = "insert into myproducts(num,model_id) values(mypdct_seq.nextval,?)";// ?빈공간을 만들어줌
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, cev.getModel_id());
-//			psmt.setString(2, cev.getCategory());// 1부터 시작
-//			psmt.setInt(3, cev.getHour_sp());
-//			psmt.setInt(4, cev.getOn_mode());
-//			psmt.setInt(5, cev.getOff_mode());
-//			psmt.setString(6, cev.getCompany());
-//			psmt.setInt(7, cev.getSort());
+			psmt.setInt(1, vo.getNum());
+			psmt.setString(2, vo.getModel_id());
+			
+//			psmt.setString(4, vo.getVip_id());
 			cnt = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -68,26 +66,26 @@ public class PR_DAO {
 		}
 		return cnt;
 	}
-		public ArrayList<PR_VO> allSelect_CE() {
-			ArrayList<PR_VO> list = new ArrayList<PR_VO>();
+	//등록된 목록 불러오기
+		public ArrayList<mypVO> allSelect_CE() {
+			ArrayList<mypVO> list = new ArrayList<mypVO>();
 			try {
 				getConnection();
-				String sql = "Select * from CNSMP_EFRTN";
+				String sql = "Select * from products";
 				psmt = conn.prepareStatement(sql);
 				rs = psmt.executeQuery();
 				
 				int num1 = 1;
 				
 				while (rs.next()) {
-					String model_id = rs.getString(1);
-					String category = rs.getString(2);
-					int hour_sp = rs.getInt(3);
-					int on_mode = rs.getInt(4);
-					int off_mode = rs.getInt(5);
-					String company = rs.getString(6);
-					int sort = rs.getInt(7);
+					int num = rs.getInt(1);
+					String model_id = rs.getString(2);
+					String category = rs.getString(3);
+					String vip_id = rs.getString(4);
+					int sort = rs.getInt(5);
+					int wh = rs.getInt(6);
 					
-					PR_VO CEV = new PR_VO(model_id, category,hour_sp, on_mode, off_mode, company, sort);
+					mypVO CEV = new mypVO(num, model_id, category, vip_id, sort, wh);
 					list.add(CEV);
 					
 				}
