@@ -25,6 +25,7 @@ public class ProductsVO {
 		
 		this.model_id = model_id;
 	}
+	
 	public int getNum() {
 		return num;
 	}
@@ -73,6 +74,7 @@ public class ProductsVO {
 	public void setSort(int sort) {
 		this.sort = sort;
 	}
+	
 	
 	
 }

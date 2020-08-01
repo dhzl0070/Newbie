@@ -51,10 +51,10 @@ public class Notice {
          public void mouseClicked(MouseEvent e) {
 
             frame.dispose();
-            Home.main(null);
+            Home Home = new Home(null, null);
          }
       });
-      lbl_HP.setBounds(49, 25, 122, 43);
+      lbl_HP.setBounds(49, 25, 81, 43);
       frame.getContentPane().add(lbl_HP);
 
       JLabel lbl_Notice = new JLabel("");
@@ -76,10 +76,10 @@ public class Notice {
          public void mouseClicked(MouseEvent e) {
             
             frame.dispose();
-            Mypage.main(null);
+            Mypage Mypage = new Mypage(null, null);
          }
       });
-      lbl_Mypage.setBounds(176, 25, 122, 43);
+      lbl_Mypage.setBounds(176, 25, 99, 43);
       frame.getContentPane().add(lbl_Mypage);
       
       String url = getClass().getResource("").getPath();

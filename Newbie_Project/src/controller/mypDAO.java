@@ -51,14 +51,16 @@ public class mypDAO {
 	public int myproducts(ProductsVO pvo, userVO vo) {
 		int cnt = 0;
 		try {
+			System.out.println("연결완료");
 			getConnection();
 			String sql = "insert into myproducts(num,model_id,vip_id) values(mypdct_seq.nextval,?,?)";// ?빈공간을 만들어줌
 			psmt = conn.prepareStatement(sql);
 			/* psmt.setInt(1, vo.getNum()); */
 			psmt.setString(1, pvo.getModel_id());
-			//System.out.println("123" + pvo.getModel_id());
+			
+			System.out.println("123" + pvo.getModel_id());
 			psmt.setNString(2, vo.getVip_id());
-			//System.out.println("456" + vo.getVip_id());
+			System.out.println("456" + vo.getVip_id());
 			cnt = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -73,7 +75,7 @@ public class mypDAO {
 		ArrayList<mypVO> list = new ArrayList<mypVO>();
 		try {
 			getConnection();
-			String sql = "Select * from products";
+			String sql = "Select * from myproducts";
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 
@@ -84,10 +86,9 @@ public class mypDAO {
 				String model_id = rs.getString(2);
 				String category = rs.getString(3);
 				String vip_id = rs.getString(4);
-				int sort = rs.getInt(5);
-				int wh = rs.getInt(6);
+			
 
-				mypVO CEV = new mypVO(num, model_id, category, vip_id, sort, wh);
+				mypVO CEV = new mypVO(num, model_id, category, vip_id);
 				list.add(CEV);
 			}
 		} catch (SQLException e) {

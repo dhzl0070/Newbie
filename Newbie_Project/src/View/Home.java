@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import model.ProductsVO;
 import model.userVO;
 
 import java.awt.event.MouseAdapter;
@@ -15,35 +16,32 @@ import java.awt.event.MouseEvent;
 
 public class Home {
 
+
    private JFrame frame;
 
-   /**
-    * Launch the application.
-    */
-   public static void main(userVO vo) {
-      EventQueue.invokeLater(new Runnable() {
-         public void run() {
-            try {
-               Home window = new Home(vo);
-               window.frame.setVisible(true);
-            } catch (Exception e) {
-               e.printStackTrace();
-            }
-         }
-      });
+//   public static void main(userVO vo) {
+//      EventQueue.invokeLater(new Runnable() {
+//         public void run() {
+//            try {
+//               Home window = new Home(vo);
+//               System.out.println("home "+vo.getVip_id());
+//               window.frame.setVisible(true);
+//            } catch (Exception e) {
+//               e.printStackTrace();
+//            }
+//         }
+//      });
+//   }
+
+   public Home(userVO vo, ProductsVO pvo) {
+      initialize(vo, pvo);
+      frame.setVisible(true);
    }
 
-   /**
-    * Create the application.
-    */
-   public Home(userVO vo) {
-      initialize(vo);
-   }
+   
 
-   /**
-    * Initialize the contents of the frame.
-    */
-   private void initialize(userVO vo) {
+private void initialize(userVO vo,ProductsVO pvo) {
+	
       frame = new JFrame();
       frame.setBounds(100, 100, 768, 630);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,7 +53,7 @@ public class Home {
          public void mouseClicked(MouseEvent e) {
             
             frame.dispose();
-            Step1.main(null);
+            Step1 step1 = new Step1(vo);
          }
       });
       lbl_Step1.setBounds(48, 473, 82, 96);
@@ -67,7 +65,7 @@ public class Home {
          public void mouseClicked(MouseEvent e) {
             
             frame.dispose();
-            Circulator.main(null);
+            Cal_ cal_ =new Cal_(vo, pvo);
          }
       });
       lbl_Circulator.setBounds(168, 473, 82, 96);
@@ -103,7 +101,7 @@ public class Home {
          public void mouseClicked(MouseEvent e) {
 
             frame.dispose();
-            Home.main(null);
+            Home home = new Home(vo, pvo);
          }
       });
       lbl_HP.setBounds(49, 25, 122, 43);
@@ -128,17 +126,20 @@ public class Home {
          public void mouseClicked(MouseEvent e) {
             
             frame.dispose();
-            Mypage.main(null);
+            Mypage mypage = new Mypage(vo, pvo);
+            		
          }
       });
       lbl_Mypage.setBounds(176, 25, 122, 43);
       frame.getContentPane().add(lbl_Mypage);
       String url = getClass().getResource("").getPath();
-      System.out.println(url);
       Image image = new ImageIcon(url+"images/Home.jpg").getImage();
       JLabel lblNewLabel = new JLabel(new ImageIcon(image.getScaledInstance(768, 580, Image.SCALE_SMOOTH)));
       lblNewLabel.setBounds(0, 0, 752, 600);
       frame.getContentPane().add(lblNewLabel);
       
    }
+
+	
+
 }
