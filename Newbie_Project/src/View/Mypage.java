@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import controller.mypDAO;
+import model.Cuml_VO;
 import model.ProductsVO;
 import model.mypVO;
 import model.userVO;
@@ -32,12 +33,12 @@ public class Mypage {
 //		});
 //	}
 
-	public Mypage(userVO vo, ProductsVO pvo) {
-		initialize(vo, pvo);
+	public Mypage(userVO vo, Cuml_VO cvo, mypVO mvo) {
+		initialize(vo, cvo, mvo);
 		frame.setVisible(true);
 	}
 
-	private void initialize(userVO vo, ProductsVO pvo) {
+	private void initialize(userVO vo,  Cuml_VO cvo, mypVO mvo) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 400, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,7 +55,7 @@ public class Mypage {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				frame.dispose();
-	               Home Home = new Home(vo, pvo);
+	               Home home = new Home(vo, cvo, mvo);
 			}
 		});
 		lblNewLabel_1.setBounds(12, 10, 108, 42);
@@ -66,7 +67,7 @@ public class Mypage {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				frame.dispose();
-	            Myproduct Myproudct = new Myproduct(vo, pvo);
+	            Myproduct Myproudct = new Myproduct(vo, cvo, mvo);
 			}
 		});
 		lblNewLabel_2.setBounds(138, 264, 108, 42);

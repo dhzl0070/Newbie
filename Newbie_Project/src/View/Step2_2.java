@@ -25,6 +25,7 @@ import javax.swing.JRadioButton;
 public class Step2_2 {
 	mypDAO dao = new mypDAO();
 	private String rs_m = " ";	
+	private String rs_p = " ";
 	private JFrame frame;
 
 	/**
@@ -113,27 +114,6 @@ public class Step2_2 {
 		btn_add.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String model_id = rs_m.trim();
-				ProductsVO pvo = new ProductsVO(model_id);
-				int cnt = dao.myproducts(pvo, vo);
-				if (cnt > 0) {
-
-					JOptionPane.showMessageDialog(null, "등록 성공!", "제품등록", JOptionPane.INFORMATION_MESSAGE);
-				} else {
-					JOptionPane.showMessageDialog(null, "등록 실패!", "제품등록", JOptionPane.ERROR_MESSAGE);
-				}
-				
-				
-				rbtn.setSelected(false);
-				rbtn1.setSelected(false);
-				rbtn2.setSelected(false);
-				rbtn3.setSelected(false);
-				rbtn4.setSelected(false);
-				comboBox_5.setSelectedIndex(0);
-				comboBox_6.setSelectedIndex(0);
-				comboBox_7.setSelectedIndex(0);
-				comboBox_8.setSelectedIndex(0);
-				comboBox_9.setSelectedIndex(0);
 				String rs_p = "";
 				if (rbtn.isSelected()) {
 					rs_p = rbtn.getText();
@@ -150,7 +130,7 @@ public class Step2_2 {
 				else if (rbtn4.isSelected()) {
 					rs_p = rbtn4.getText();
 				}
-				String rs_m = " ";
+				rs_m = " ";
 				if (comboBox_6.getSelectedIndex() != 0) {
 					rs_m += comboBox_6.getSelectedItem() + " ";
 				} else
@@ -171,7 +151,23 @@ public class Step2_2 {
 					rs_m += comboBox_5.getSelectedItem() + " ";
 				} else
 					rs_m += "";
-
+				
+				String model_id = rs_m.trim();
+				String category = rs_p;
+				ProductsVO pvo = new ProductsVO(model_id, category);
+				int cnt = dao.myproducts(pvo, vo);
+				if (cnt > 0) {
+					JOptionPane.showMessageDialog(null, "등록 성공!", "제품등록", JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(null, "이미 있는 제품입니다!!", "제품등록", JOptionPane.ERROR_MESSAGE);
+				}
+				
+				comboBox_5.setSelectedIndex(0);
+				comboBox_6.setSelectedIndex(0);
+				comboBox_7.setSelectedIndex(0);
+				comboBox_8.setSelectedIndex(0);
+				comboBox_9.setSelectedIndex(0);
+				
 				//txt_p.setText("선택한 제품  :" + rs_p + "\n" + "모델명  :" + rs_m + "\n");
 			}
 		});
@@ -182,22 +178,18 @@ public class Step2_2 {
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				
+				frame.dispose();
+				Step1 step1 = new Step1(vo);
 			}
 		});
 	      btnNewButton_1.setBounds(187, 418, 117, 47);
 	      frame.getContentPane().add(btnNewButton_1);
-	      
-
-		
-	      
 	      JLabel lblNewLabel_1 = new JLabel("");
 	      lblNewLabel_1.addMouseListener(new MouseAdapter() {
 	      	@Override
 	      	public void mouseClicked(MouseEvent e) {
 	      		frame.dispose();
-	      		Home home = new Home(vo, null);
+	      		Home home = new Home(vo, null, null);
 	      	}
 	      });
 	      lblNewLabel_1.setBounds(58, 10, 90, 42);
@@ -208,10 +200,9 @@ public class Step2_2 {
 	      	@Override
 	      	public void mouseClicked(MouseEvent e) {
 	      		frame.dispose();
-	      		Mypage mypage = new Mypage(vo, null);
+	      		Mypage mypage = new Mypage(vo, null, null);
 	      	}
 	      });
-	      
 	      String url = getClass().getResource("").getPath();
 			Image image = new ImageIcon(url + "images/Step2.jpg").getImage();
 			JLabel lblNewLabel = new JLabel(new ImageIcon(image.getScaledInstance(390, 600, image.SCALE_SMOOTH)));
@@ -223,7 +214,7 @@ public class Step2_2 {
 		      	@Override
 		      	public void mouseClicked(MouseEvent e) {
 		      		frame.dispose();
-		      		Mypage mypage = new Mypage(vo, null);
+		      		Mypage mypage = new Mypage(vo, null, null);
 		      	}
 		      });
 		      lblNewLabel_3.setBounds(199, 10, 104, 42);

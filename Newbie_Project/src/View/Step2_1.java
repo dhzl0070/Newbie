@@ -28,8 +28,10 @@ import java.awt.event.ActionEvent;
 public class Step2_1 {
 	mypDAO dao = new mypDAO();
 	private String rs_m = " ";
+	private String rs_p = " ";
 	private JFrame frame;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private String category;
 
 //   public static void main(userVO vo) {
 //      EventQueue.invokeLater(new Runnable() {
@@ -220,44 +222,18 @@ public class Step2_1 {
 				} else
 					rs_m += "";
 				
-
-				/* txt_p.setText("선택한 제품  :" + rs_p + "\n" + "모델명  :" + rs_m + "\n"); */
-			}
-		});
-		
-		JButton fb = new JButton();
-		frame.getContentPane().add(fb);
-		buttonGroup.add(fb);
 				
-		btnNewButton.setBounds(40, 420, 175, 40);
-		frame.getContentPane().add(btnNewButton);
-		JButton btnNewButton_1 = new JButton("\uB2EB\uAE30");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+				
 				String model_id = rs_m.trim();
-				ProductsVO pvo = new ProductsVO(model_id);
+				String category = rs_p;
+				ProductsVO pvo = new ProductsVO(model_id,category);
 				int cnt = dao.myproducts(pvo, vo);
 				if (cnt > 0) {
 					JOptionPane.showMessageDialog(null, "등록 성공!", "제품등록", JOptionPane.INFORMATION_MESSAGE);
 				} else {
 					JOptionPane.showMessageDialog(null, "이미 있는 제품입니다!!", "제품등록", JOptionPane.ERROR_MESSAGE);
 				}
-				fb.setSelected(true);
-//				rbtn.setSelected(false);
-//				rbtn1.setSelected(false);
-//				rbtn2.setSelected(false);
-//				rbtn3.setSelected(false);
-//				rbtn4.setSelected(false);
-//				rbtn5.setSelected(false);
-//				rbtn6.setSelected(false);
-//				rbtn7.setSelected(false);
-//				rbtn.setSelected(false);
-//				rbtn.setSelected(false);
+				
 				comboBox.setSelectedIndex(0);
 				comboBox_1.setSelectedIndex(0);
 				comboBox_2.setSelectedIndex(0);
@@ -267,9 +243,31 @@ public class Step2_1 {
 				comboBox_6.setSelectedIndex(0);
 				comboBox_7.setSelectedIndex(0);
 				comboBox_8.setSelectedIndex(0);
+
+				/* txt_p.setText("선택한 제품  :" + rs_p + "\n" + "모델명  :" + rs_m + "\n"); */
 			}
 		});
-		btnNewButton_1.setBounds(227, 420, 80, 40);
+		
+		JButton fb = new JButton();
+		frame.getContentPane().add(fb);
+		buttonGroup.add(fb);
+				
+		btnNewButton.setBounds(55, 420, 115, 40);
+		frame.getContentPane().add(btnNewButton);
+		JButton btnNewButton_1 = new JButton("\uB4A4\uB85C\uAC00\uAE30");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				Step1 step1 = new Step1(vo);
+			}
+		});
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		btnNewButton_1.setBounds(197, 420, 110, 40);
 		frame.getContentPane().add(btnNewButton_1);
 
 		
@@ -279,7 +277,7 @@ public class Step2_1 {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				frame.dispose();
-				Home home = new Home(vo, null);
+				Home home = new Home(vo, null, null);
 			}
 		});
 		lblNewLabel_1.setBounds(55, 10, 100, 45);
@@ -290,7 +288,7 @@ public class Step2_1 {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				frame.dispose();
-				Mypage mypage = new Mypage(vo, null);
+				Mypage mypage = new Mypage(vo, null, null);
 			}
 		});
 		lblNewLabel_2.setBounds(197, 10, 115, 45);

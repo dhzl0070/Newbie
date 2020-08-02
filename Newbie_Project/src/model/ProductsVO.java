@@ -9,6 +9,8 @@ public class ProductsVO {
 	private int off_mode;
 	private String company;
 	private int sort;
+	
+	
 	public ProductsVO(int num, String model_id, String category, int wh, int on_mode, int off_mode, String company,
 			int sort) {
 		super();
@@ -21,8 +23,8 @@ public class ProductsVO {
 		this.company = company;
 		this.sort = sort;
 	}
-	public ProductsVO(String model_id) {
-		
+	public ProductsVO(String model_id, String category) {
+		this.category = category;
 		this.model_id = model_id;
 	}
 	

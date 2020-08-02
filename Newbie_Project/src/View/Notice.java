@@ -51,7 +51,7 @@ public class Notice {
          public void mouseClicked(MouseEvent e) {
 
             frame.dispose();
-            Home Home = new Home(null, null);
+            Home Home = new Home(null, null, null);
          }
       });
       lbl_HP.setBounds(49, 25, 81, 43);
@@ -76,7 +76,7 @@ public class Notice {
          public void mouseClicked(MouseEvent e) {
             
             frame.dispose();
-            Mypage Mypage = new Mypage(null, null);
+            Mypage Mypage = new Mypage(null, null, null);
          }
       });
       lbl_Mypage.setBounds(176, 25, 99, 43);

@@ -49,7 +49,7 @@ public class Step1 {
          public void mouseClicked(MouseEvent e) {
 
             frame.dispose();
-            Home Home = new Home(vo, null);
+            Home home = new Home(vo, null, null);
          }
       });
       lbl_HP.setBounds(29, 10, 106, 36);
@@ -74,7 +74,7 @@ public class Step1 {
          public void mouseClicked(MouseEvent e) {
             
             frame.dispose();
-            Mypage Mypage = new Mypage(vo, null);
+            Mypage mypage = new Mypage(vo, null, null);
          }
       });
       lbl_Mypage.setBounds(171, 10, 113, 36);
@@ -87,7 +87,7 @@ public class Step1 {
          public void mouseClicked(MouseEvent e) {
             
             frame.dispose();
-            Step2_1 Step2_1 =  new Step2_1(vo);
+            Step2_1 step2_1 =  new Step2_1(vo);
          }
       });
       lbl_Step2_1.setBounds(65, 78, 288, 343);
@@ -99,7 +99,7 @@ public class Step1 {
          public void mouseClicked(MouseEvent e) {
             
             frame.dispose();
-            Step2_2 Step2_2 = new Step2_2(vo);
+            Step2_2 step2_2 = new Step2_2(vo);
          }
       });
       lbl_Step2_2.setBounds(411, 78, 267, 343);

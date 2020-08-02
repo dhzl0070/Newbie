@@ -73,7 +73,7 @@ public class Login {
 
 				frame.dispose();
 
-				Home Home = new Home(null, null);
+				Home home = new Home(null,  null, null);
 			}
 		});
 		lbl_HP.setBounds(58, 10, 130, 58);
@@ -85,7 +85,7 @@ public class Login {
 			public void mouseClicked(MouseEvent e) {
 
 				frame.dispose();
-				Mypage Mypage = new Mypage(null, null);
+				Mypage Mypage = new Mypage(null, null, null);
 			}
 		});
 
@@ -121,7 +121,7 @@ public class Login {
 
 				if (result != null) {
 					frame.dispose();
-					Home Home = new Home(vo, null);
+					Home home = new Home(vo,  null, null);
 				} else {
 					JOptionPane.showMessageDialog(null, "로그인실패 :(", "로그인", JOptionPane.ERROR_MESSAGE);
 					System.out.println("로그인 실패 :( ");

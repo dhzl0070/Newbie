@@ -37,15 +37,4 @@ public class mypVO {
 		this.vip_id = vip_id;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
 }

@@ -8,7 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import model.Cuml_VO;
 import model.ProductsVO;
+import model.mypVO;
 import model.userVO;
 
 import java.awt.event.MouseAdapter;
@@ -33,14 +35,16 @@ public class Home {
 //      });
 //   }
 
-   public Home(userVO vo, ProductsVO pvo) {
-      initialize(vo, pvo);
+   public Home(userVO vo, Cuml_VO cvo, mypVO mvo) {
+      initialize(vo, cvo, mvo);
+//      System.out.println("vo "+vo.getVip_id());
+//      System.out.println("mvo "+mvo.getModel_id());
       frame.setVisible(true);
    }
 
    
 
-private void initialize(userVO vo,ProductsVO pvo) {
+private void initialize(userVO vo, Cuml_VO cvo, mypVO mvo) {
 	
       frame = new JFrame();
       frame.setBounds(100, 100, 768, 630);
@@ -65,23 +69,11 @@ private void initialize(userVO vo,ProductsVO pvo) {
          public void mouseClicked(MouseEvent e) {
             
             frame.dispose();
-            Cal_ cal_ =new Cal_(vo, pvo);
+            Cal_ cal_ =new Cal_(vo);
          }
       });
       lbl_Circulator.setBounds(168, 473, 82, 96);
       frame.getContentPane().add(lbl_Circulator);
-      
-      JLabel lbl_Pattern = new JLabel("");
-      lbl_Pattern.addMouseListener(new MouseAdapter() {
-         @Override
-         public void mouseClicked(MouseEvent e) {
-            
-            frame.dispose();
-            Pattern.main(null);
-         }
-      });
-      lbl_Pattern.setBounds(501, 473, 82, 96);
-      frame.getContentPane().add(lbl_Pattern);
       
       JLabel lbl_Compare = new JLabel("");
       lbl_Compare.addMouseListener(new MouseAdapter() {
@@ -101,7 +93,7 @@ private void initialize(userVO vo,ProductsVO pvo) {
          public void mouseClicked(MouseEvent e) {
 
             frame.dispose();
-            Home home = new Home(vo, pvo);
+            Home home = new Home(null,  null, null);
          }
       });
       lbl_HP.setBounds(49, 25, 122, 43);
@@ -126,7 +118,7 @@ private void initialize(userVO vo,ProductsVO pvo) {
          public void mouseClicked(MouseEvent e) {
             
             frame.dispose();
-            Mypage mypage = new Mypage(vo, pvo);
+            Mypage mypage = new Mypage(vo, cvo, mvo);
             		
          }
       });
@@ -138,8 +130,17 @@ private void initialize(userVO vo,ProductsVO pvo) {
       lblNewLabel.setBounds(0, 0, 752, 600);
       frame.getContentPane().add(lblNewLabel);
       
+      JLabel lblNewLabel_1 = new JLabel("");
+      lblNewLabel_1.addMouseListener(new MouseAdapter() {
+      	@Override
+      	public void mouseClicked(MouseEvent e) {
+      		
+      		frame.dispose();
+      		Cuml cuml = new Cuml(vo, cvo);
+      	}
+      });
+      lblNewLabel_1.setBounds(496, 473, 99, 96);
+      frame.getContentPane().add(lblNewLabel_1);
+      
    }
-
-	
-
 }

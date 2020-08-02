@@ -46,21 +46,21 @@ public class mypDAO {
 			e.printStackTrace();
 		}
 	}
-
+	
 	// myproducts에 등록
 	public int myproducts(ProductsVO pvo, userVO vo) {
 		int cnt = 0;
 		try {
 			System.out.println("연결완료");
 			getConnection();
-			String sql = "insert into myproducts(num,model_id,vip_id) values(mypdct_seq.nextval,?,?)";// ?빈공간을 만들어줌
+			String sql = "insert into myproducts(num,model_id,category,vip_id) values(mypdct_seq.nextval,?,?,?)";// ?빈공간을 만들어줌
 			psmt = conn.prepareStatement(sql);
 			/* psmt.setInt(1, vo.getNum()); */
 			psmt.setString(1, pvo.getModel_id());
-			
-			System.out.println("123" + pvo.getModel_id());
-			psmt.setNString(2, vo.getVip_id());
-			System.out.println("456" + vo.getVip_id());
+			psmt.setString(2, pvo.getCategory());
+			//System.out.println("123" + pvo.getModel_id());
+			psmt.setNString(3, vo.getVip_id());
+			//System.out.println("456" + vo.getVip_id());
 			cnt = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -69,14 +69,15 @@ public class mypDAO {
 		}
 		return cnt;
 	}
-
+	
 	// 등록된 목록 불러오기
-	public ArrayList<mypVO> allSelect_CE() {
+	public ArrayList<mypVO> allSelect_CE(userVO vo) {
 		ArrayList<mypVO> list = new ArrayList<mypVO>();
 		try {
 			getConnection();
-			String sql = "Select * from myproducts";
+			String sql = "Select * from myproducts where vip_id = ?";
 			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getVip_id());
 			rs = psmt.executeQuery();
 
 			int num1 = 1;

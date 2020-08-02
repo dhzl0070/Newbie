@@ -52,7 +52,7 @@ public class userDAO {
       try {
          getConnection();
          
-         String sql = "select name, age from VIP where vip_id=? and member_pw=?";
+         String sql = "select name, age from VIP where vip_id=? and vip_pw=?";
          psmt = conn.prepareStatement(sql);
          psmt.setString(1, vo.getVip_id());
          psmt.setString(2, vo.getVip_pw());
