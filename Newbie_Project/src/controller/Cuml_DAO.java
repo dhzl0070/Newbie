@@ -1,11 +1,4 @@
 package controller;
-
-
-
-	
-	
-	
-	
 	import java.sql.Connection;
 	import java.sql.DriverManager;
 	import java.sql.PreparedStatement;
@@ -15,6 +8,7 @@ package controller;
 
 import model.Cuml_VO;
 import model.ProductsVO;
+import model.cal_VO;
 import model.userVO;
 
 	public class Cuml_DAO {
@@ -54,37 +48,15 @@ import model.userVO;
 			}
 		}
 
-		// myproducts에 등록
-		public int myproducts(ProductsVO pvo, userVO vo) {
-			int cnt = 0;
-			try {
-				System.out.println("연결완료");
-				getConnection();
-				String sql = "insert into myproducts(num,model_id,vip_id) values(mypdct_seq.nextval,?,?)";// ?빈공간을 만들어줌
-				psmt = conn.prepareStatement(sql);
-				/* psmt.setInt(1, vo.getNum()); */
-				psmt.setString(1, pvo.getModel_id());
-
-				System.out.println("123" + pvo.getModel_id());
-				psmt.setString(2, vo.getVip_id());
-				System.out.println("456" + vo.getVip_id());
-				cnt = psmt.executeUpdate();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {// 예외가 발생해도 한번은 실행
-				close();
-			}
-			return cnt;
-		}
 		
-		public ArrayList<Cuml_VO> allSelect() {
+		public ArrayList<Cuml_VO> allSelect(Cuml_VO cmvo) {
 			//	
 			ArrayList<Cuml_VO> list = new ArrayList<Cuml_VO>();
 			
 			//	1. 연결 --> 데이터베이스랑 연결해주는 메소드
-			getConnection();
 			
 			try {
+				getConnection();
 				String sql = "select model_id, fare from cuml_use";
 				//					---> 컬럼의 크기가 커진다면, 테이블 이름을 써주는 편이 좋다!
 				psmt = conn.prepareStatement(sql);			
@@ -94,8 +66,9 @@ import model.userVO;
 				//	-->전송해주는 객체
 				while(rs.next()) {
 					//	---> 값이 있을때까지, 무조건 가지고 와랏!
-					String model_id = rs.getString(1);
-					int fare = rs.getInt(2);
+					
+					int fare = rs.getInt(1);
+					String model_id = rs.getString(2);
 					
 					//	인덱스가 1부터 시작한다.
 					
@@ -113,8 +86,6 @@ import model.userVO;
 			
 			return list;
 		}
-		
-		
 		
 		public int chart_num(ProductsVO pvo, userVO vo) {
 			int cnt = 0;
@@ -137,19 +108,4 @@ import model.userVO;
 			}
 			return cnt;
 		}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

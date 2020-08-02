@@ -7,6 +7,9 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -21,6 +24,7 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import au.com.bytecode.opencsv.CSVReader;
 import controller.Cuml_DAO;
 import model.Cuml_VO;
 import model.ProductsVO;
@@ -33,37 +37,13 @@ public class Cuml {
 	Cuml_DAO dao = new Cuml_DAO();
 	ArrayList<Cuml_VO> list = new ArrayList<Cuml_VO>();
 
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(Cuml_VO cvo) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					
-//				
-//					Cuml window = new Cuml(cvo);
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
-	/**
-	 * Create the application.
-	 */
-	public Cuml(userVO vo, Cuml_VO cvo) {
-		initialize(vo, cvo);
+	public Cuml(userVO vo, Cuml_VO cmvo) {
+		initialize(vo, cmvo);
+		System.out.println("vo "+vo.getVip_id());
 		frame.setVisible(true);
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize(userVO vo, Cuml_VO cvo) {
-		
+	private void initialize(userVO vo, Cuml_VO cmvo) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 768, 630);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -75,7 +55,7 @@ public class Cuml {
 			public void mouseClicked(MouseEvent e) {
 
 				frame.dispose();
-				Home home = new Home(vo, cvo, null);
+				Home home = new Home(vo, cmvo, null);
 			}
 		});
 		lbl_HP.setBounds(49, 25, 122, 43);
@@ -100,7 +80,7 @@ public class Cuml {
 			public void mouseClicked(MouseEvent e) {
 
 				frame.dispose();
-				Mypage mypage = new Mypage(vo,  cvo, null);
+				Mypage mypage = new Mypage(vo,  cmvo, null);
 			}
 		});
 		lbl_Mypage.setBounds(176, 25, 122, 43);
@@ -113,7 +93,7 @@ public class Cuml {
 		JFreeChart chart = ChartFactory.createBarChart("누적사용량", // 차트의 제목
 				"", // x축,가데이터 입력
 				"사용요금", // y축,가데이터 입력
-				getDataset(cvo), // 우리가 넣어줄 데이터!
+				getDataset(cmvo), // 우리가 넣어줄 데이터!
 				PlotOrientation.VERTICAL, // 그래프의 방향
 				true, // 범례
 				true, // 말풍선
@@ -148,7 +128,7 @@ public class Cuml {
 		chartVisual.setVisible(true);
 		panel.add(chartVisual);
 
-		ArrayList<Cuml_VO> list = dao.allSelect();
+		ArrayList<Cuml_VO> list = dao.allSelect(cmvo);
 
 		System.out.println(list.size());
 
@@ -159,8 +139,8 @@ public class Cuml {
 		Object data[][] = new Object[list.size()][colNames.length];
 		// 데이터에 실제로 넣어주기
 		for (int i = 0; i < list.size(); i++) {
-			data[i][0] = cvo.getcommaNum();
-			data[i][1] =  cvo.gettype_selected();
+			data[i][0] =  cmvo.getcommaNum();
+			data[i][1] =  cmvo.gettype_selected();
 			
 			String url = getClass().getResource("").getPath();
 			Image image = new ImageIcon(url+"images/Pattern.jpg").getImage();
@@ -170,17 +150,34 @@ public class Cuml {
 		}
 	}
 
-	private DefaultCategoryDataset getDataset(Cuml_VO cvo) {
-//		cal_DAO dao = new cal_DAO();
-
-		// Dataset 셋팅해주기
-		
-		//회원정보 누적 데이터 만들기
-		//회원정보 담긴 어레이 리스트 만들기 --> vo로 셋팅하고 dao 에서 리스트 값 받아주기
+	private DefaultCategoryDataset getDataset(Cuml_VO cmvo) {
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		
-		dataset.setValue(cvo.getcommaNum(),"제품별사용량", cvo.gettype_selected());
-		
+//		dataset.addValue(10, "이름", "김운비");
+//		dataset.addValue(20, "이름", "김혜린");
+//		dataset.addValue(30, "이름", "박성준");
+//		dataset.addValue(40, "이름", "김형준");
+//		dataset.addValue(50, "이름", "정진청");
+//		
+//		dataset.addValue(10, "점수", "김운비");
+//		dataset.addValue(20, "점수", "김혜린");
+//		dataset.addValue(30, "점수", "박성준");
+//		dataset.addValue(40, "점수", "김형준");
+//		dataset.addValue(50, "점수", "정진청");
+		int cnt = 0;
+		while(true) {
+			cnt++;
+			//cnt의 역할은 컬럼명을 데이터에 넣지 않기위해서 check를 해주는 역할
+			if(cnt > 1) {
+				for (int i = 0; i < list.size(); i++) {
+					dataset.addValue(10,"list.get(i)", "list.get(i+1)");
+				}
+			}
+			if(cnt > 6) {
+				break;
+			}
+		}
 		return dataset;
 	}
-}
+
+	}
+

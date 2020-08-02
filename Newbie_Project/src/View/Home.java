@@ -35,8 +35,8 @@ public class Home {
 //      });
 //   }
 
-   public Home(userVO vo, Cuml_VO cvo, mypVO mvo) {
-      initialize(vo, cvo, mvo);
+   public Home(userVO vo, Cuml_VO cmvo, mypVO mvo) {
+      initialize(vo, cmvo, mvo);
 //      System.out.println("vo "+vo.getVip_id());
 //      System.out.println("mvo "+mvo.getModel_id());
       frame.setVisible(true);
@@ -44,7 +44,7 @@ public class Home {
 
    
 
-private void initialize(userVO vo, Cuml_VO cvo, mypVO mvo) {
+private void initialize(userVO vo, Cuml_VO cmvo, mypVO mvo) {
 	
       frame = new JFrame();
       frame.setBounds(100, 100, 768, 630);
@@ -118,7 +118,7 @@ private void initialize(userVO vo, Cuml_VO cvo, mypVO mvo) {
          public void mouseClicked(MouseEvent e) {
             
             frame.dispose();
-            Mypage mypage = new Mypage(vo, cvo, mvo);
+            Mypage mypage = new Mypage(vo, cmvo, mvo);
             		
          }
       });
@@ -136,7 +136,7 @@ private void initialize(userVO vo, Cuml_VO cvo, mypVO mvo) {
       	public void mouseClicked(MouseEvent e) {
       		
       		frame.dispose();
-      		Cuml cuml = new Cuml(vo, cvo);
+      		Cuml cuml = new Cuml(vo, cmvo);
       	}
       });
       lblNewLabel_1.setBounds(496, 473, 99, 96);
