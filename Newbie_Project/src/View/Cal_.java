@@ -39,28 +39,12 @@ public class Cal_ {
 	private double fee = 0;
 	private int time =0;
 	mypVO mvo=null;
-
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					cal_1 window = new cal_1();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
 	public Cal_(userVO vo) {
 		initialize(vo);
 		System.out.println("vo" + vo.getVip_id());
 		frame.setVisible(true);
 	}
-
 	private void initialize(userVO vo) {
-
 		frame = new JFrame();
 		frame.setBounds(100, 100, 400, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

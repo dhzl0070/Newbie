@@ -21,28 +21,12 @@ public class Home {
 
    private JFrame frame;
 
-//   public static void main(userVO vo) {
-//      EventQueue.invokeLater(new Runnable() {
-//         public void run() {
-//            try {
-//               Home window = new Home(vo);
-//               System.out.println("home "+vo.getVip_id());
-//               window.frame.setVisible(true);
-//            } catch (Exception e) {
-//               e.printStackTrace();
-//            }
-//         }
-//      });
-//   }
-
    public Home(userVO vo, Cuml_VO cmvo, mypVO mvo) {
       initialize(vo, cmvo, mvo);
 //      System.out.println("vo "+vo.getVip_id());
 //      System.out.println("mvo "+mvo.getModel_id());
       frame.setVisible(true);
    }
-
-   
 
 private void initialize(userVO vo, Cuml_VO cmvo, mypVO mvo) {
 	
@@ -74,18 +58,6 @@ private void initialize(userVO vo, Cuml_VO cmvo, mypVO mvo) {
       });
       lbl_Circulator.setBounds(168, 473, 82, 96);
       frame.getContentPane().add(lbl_Circulator);
-      
-      JLabel lbl_Compare = new JLabel("");
-      lbl_Compare.addMouseListener(new MouseAdapter() {
-         @Override
-         public void mouseClicked(MouseEvent e) {
-            
-            frame.dispose();
-            Compare.main(null);
-         }
-      });
-      lbl_Compare.setBounds(621, 473, 82, 96);
-      frame.getContentPane().add(lbl_Compare);
       
       JLabel lbl_HP = new JLabel("");
       lbl_HP.addMouseListener(new MouseAdapter() {

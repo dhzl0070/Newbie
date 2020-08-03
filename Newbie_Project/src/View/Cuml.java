@@ -166,7 +166,6 @@ public class Cuml {
 		int cnt = 0;
 		while(true) {
 			cnt++;
-			//cnt의 역할은 컬럼명을 데이터에 넣지 않기위해서 check를 해주는 역할
 			if(cnt > 1) {
 				for (int i = 0; i < list.size(); i++) {
 					dataset.addValue(10,"list.get(i)", "list.get(i+1)");
