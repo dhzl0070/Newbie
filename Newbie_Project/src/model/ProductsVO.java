@@ -28,6 +28,11 @@ public class ProductsVO {
 		this.model_id = model_id;
 	}
 	
+	public ProductsVO(String model_id) {
+		
+		this.model_id = model_id;
+	}
+	
 	public int getNum() {
 		return num;
 	}
